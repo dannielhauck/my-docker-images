@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: n8n-postgres
+    restart: always
+    env_file:
+      - ./postgres.env
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+    networks:
+      - n8n-redis
+
+volumes:
+  postgresdb:
+
+networks:
+  n8n-redis:
+    external: true
